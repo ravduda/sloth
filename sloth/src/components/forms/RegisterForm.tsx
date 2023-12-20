@@ -9,6 +9,7 @@ import PasswordField from "./formComponents/PasswordField";
 import { Button } from "../ui/button";
 import FirstNameField from "./formComponents/FirstNameField";
 import axios from "axios";
+import { setJWT } from "../JWTManager";
 
 const RegisterForm = () => {
   const formSchema = zod.object({
@@ -30,7 +31,11 @@ const RegisterForm = () => {
     console.log(values);
     axios
       .post("http://localhost:8080/auth/register", values)
-      .then((response) => console.log(response));
+      .then((response) => {
+        if (response != null && response.data.token != null) {
+          setJWT(response.data.token);
+        }
+      });
   }
   return (
     <Form {...form}>

@@ -6,6 +6,7 @@ import * as zod from "zod";
 import EmailField from "./formComponents/EmailField";
 import PasswordField from "./formComponents/PasswordField";
 import { Button } from "../ui/button";
+import { setJWT } from "../JWTManager";
 
 const LoginForm = () => {
   const formSchema = zod.object({
@@ -23,7 +24,11 @@ const LoginForm = () => {
     console.log(values);
     axios
       .post("http://localhost:8080/auth/authenticate", values)
-      .then((response) => console.log(response));
+      .then((response) => {
+        if (response != null && response.data.token != null) {
+          setJWT(response.data.token);
+        }
+      });
   }
   return (
     <Form {...form}>
