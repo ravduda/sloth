@@ -42,7 +42,7 @@ public class TeamService {
         for(Member i : members){
             membersWithNoUser.add(Member.builder()
                     .id(i.getId())
-                    .team(i.getTeam())
+                    .team(getTeamWithoutTasks(i.getTeam()))
                     .role(i.getRole())
                     .build());
         }

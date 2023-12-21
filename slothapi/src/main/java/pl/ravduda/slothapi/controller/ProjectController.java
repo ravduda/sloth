@@ -1,15 +1,19 @@
 package pl.ravduda.slothapi.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pl.ravduda.slothapi.service.ControllerService;
+import org.springframework.web.bind.annotation.*;
+import pl.ravduda.slothapi.model.Project;
+import pl.ravduda.slothapi.service.ProjectService;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin
 @RequestMapping("/project")
 public class ProjectController {
-    private final ControllerService controllerService;
+    private final ProjectService projectService;
+
+    @PutMapping("")
+    public Project addProject(@RequestBody Project project){
+        return projectService.addProject(project);
+    }
 }
