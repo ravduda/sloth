@@ -11,15 +11,15 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin
 @RequestMapping("/team")
 public class TeamController {
     private final TeamService teamService;
-    @PutMapping("/")
+    @PutMapping("")
     public Team addTeam(@RequestBody Team team){
         return teamService.addTeam(team);
     }
-    @GetMapping("/")
+//    @CrossOrigin
+    @GetMapping("")
     public ResponseEntity<List<Member>> getTeams(){
         return ResponseEntity.ok(teamService.getUserTeams());
     }
