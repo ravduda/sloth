@@ -49,7 +49,7 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="default" className="ml-auto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
