@@ -15,8 +15,10 @@ const Dashboard = () => {
         </Link>
         <Teams />
       </ScrollArea>
-      <Card className="flex-1 p-3 my-2 mr-2">
-        <Tasks />
+      <Card className="flex-1 p-3 my-3 mr-3 border-primary">
+        <ScrollArea className="flex h-full items-center justify-center p-3">
+          <Tasks />
+        </ScrollArea>
       </Card>
     </div>
   );

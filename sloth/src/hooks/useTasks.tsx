@@ -11,9 +11,6 @@ export const useTasks = () => {
         headers: {
           Authorization: "Bearer " + getJWT(),
         },
-        params: {
-          projectId: 2,
-        },
       })
       .then((response) => {
         console.log(response.data);
