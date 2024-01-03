@@ -3,17 +3,41 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form } from "@/components/ui/form";
+import NameField from "./formComponents/NameField";
+import DescriptionField from "./formComponents/DescriptionField";
+import DeadlineField from "./formComponents/DeadlineField";
+import { useState } from "react";
+import ProjectIdField from "./formComponents/ProjectIdField";
 
-const TaskForm = () => {
+const TaskForm = ({ projectId }: any) => {
+  const [open, setOpen] = useState(false);
+  const formSchema = z.object({
+    name: z.string().min(2).max(50),
+    description: z.string(),
+    deadline: z.date(),
+    projectId: z.number(),
+  });
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "abc",
+      description: "",
+      projectId: projectId,
+    },
+  });
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+  }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <svg
@@ -33,38 +57,24 @@ const TaskForm = () => {
           Add task
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Add task</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Fill task information. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              defaultValue="Pedro Duarte"
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              defaultValue="@peduarte"
-              className="col-span-3"
-            />
-          </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <NameField form={form} />
+              <DescriptionField form={form} />
+              <DeadlineField form={form} />
+              <ProjectIdField form={form} />
+              <Button type="submit">Save</Button>
+            </form>
+          </Form>
         </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
