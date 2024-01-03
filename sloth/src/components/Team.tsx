@@ -11,7 +11,6 @@ interface ITeam {
   projects: Array<any>;
 }
 const Team = (team: ITeam) => {
-  console.log(team);
   return (
     <AccordionItem value="item">
       <AccordionTrigger>{team.name}</AccordionTrigger>
