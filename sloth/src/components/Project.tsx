@@ -1,10 +1,21 @@
+import { Link } from "react-router-dom";
+import { buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
+
 interface IProject {
   id: number;
   name: string;
   description: string;
 }
-const Project = () => {
-  return <></>;
+const Project = (project: IProject) => {
+  return (
+    <Link
+      to={`/dashboard/project/${project.id}`}
+      className={cn(buttonVariants({ variant: "ghost" }), "ml-3")}
+    >
+      {project.name}
+    </Link>
+  );
 };
 
 export default Project;

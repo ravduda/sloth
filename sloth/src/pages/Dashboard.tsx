@@ -1,3 +1,4 @@
+import Tasks from "@/components/Tasks";
 import Teams from "@/components/Teams";
 import { Card } from "@/components/ui/card";
 import {
@@ -9,21 +10,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const Dashboard = () => {
   return (
-    <div className="h-screen">
+    <div className="h-screen flex">
       {/* <div className="h-10">Menu</div> */}
-      <ResizablePanelGroup direction="horizontal" className="">
-        <ResizablePanel defaultSize={20}>
-          <ScrollArea className="flex h-full items-center justify-center p-3">
-            <Teams />
-          </ScrollArea>
-        </ResizablePanel>
-        <ResizableHandle withHandle />
-        <ResizablePanel>
-          <div className="h-full p-3 m-3">
-            <Card className="h-full p-3">content</Card>
-          </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      <ScrollArea className="flex h-full w-2/12 items-center justify-center p-3">
+        <Teams />
+      </ScrollArea>
+      <Card className="flex-1 p-3 my-2 mr-2">
+        <Tasks />
+      </Card>
     </div>
   );
 };

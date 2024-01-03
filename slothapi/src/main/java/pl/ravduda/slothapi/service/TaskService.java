@@ -10,6 +10,7 @@ import pl.ravduda.slothapi.repository.TaskRepository;
 import pl.ravduda.slothapi.requestObj.TaskRequest;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,13 @@ public class TaskService {
     }
 
     public List<Task> getTasks(Integer projectId) {
-        return taskRepository.findByProjectId(projectId);
+        List<Task> databaseTaskList = taskRepository.findByProjectId(projectId);
+        List<Task> taskList = new ArrayList<Task>();
+        for(Task i : databaseTaskList){
+            taskList.add(Task.builder()
+                            .id(i.getId())
+                    .build());
+        }
+        return taskList;
     }
 }

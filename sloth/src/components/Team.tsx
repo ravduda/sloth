@@ -1,3 +1,4 @@
+import Project from "./Project";
 import {
   AccordionContent,
   AccordionItem,
@@ -15,7 +16,10 @@ const Team = (team: ITeam) => {
     <AccordionItem value="item">
       <AccordionTrigger>{team.name}</AccordionTrigger>
       <AccordionContent>
-        Yes. It adheres to the WAI-ARIA design pattern.
+        {team.projects &&
+          team.projects.map((project, key) => {
+            return <Project key={key} {...project} />;
+          })}
       </AccordionContent>
     </AccordionItem>
   );
