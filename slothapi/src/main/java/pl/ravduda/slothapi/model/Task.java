@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.ravduda.slothapi.model.enumObj.Status;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +21,7 @@ public class Task {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private int projectId;
     @ManyToOne
     @JoinColumn(name = "owner")

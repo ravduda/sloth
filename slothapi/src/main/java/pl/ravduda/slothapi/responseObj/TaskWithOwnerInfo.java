@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import pl.ravduda.slothapi.model.Member;
 import pl.ravduda.slothapi.model.enumObj.Status;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -21,7 +22,7 @@ public class TaskWithOwnerInfo {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime deadline;
+    private LocalDate deadline;
     private int projectId;
     private UserInfo owner;
     private Status status;

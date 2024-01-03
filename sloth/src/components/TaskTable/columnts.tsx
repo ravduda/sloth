@@ -13,6 +13,7 @@ export type Task = {
   name: number;
   description: string;
   owner: Owner;
+  deadline: Array<number>;
   status: "TODO" | "DONE";
 };
 
@@ -22,12 +23,24 @@ export const columns: ColumnDef<Task>[] = [
     header: "Name",
   },
   {
-    accessorKey: "description",
-    header: "Description",
-  },
-  {
     accessorKey: "owner",
     header: "Owner",
+    cell: ({ row }) => {
+      const owner: Owner = row.getValue("owner");
+      const firstname = owner.firstname;
+      const lastname = owner.lastname;
+      const formatted = `${firstname} ${lastname}`;
+      return <div>{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "deadline",
+    header: "Deadline",
+    cell: ({ row }) => {
+      const date: Array<number> = row.getValue("deadline");
+      const formatted = `${date[0]}-${date[1]}-${date[2]}`;
+      return <div>{formatted}</div>;
+    },
   },
   {
     accessorKey: "status",
