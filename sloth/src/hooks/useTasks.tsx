@@ -7,8 +7,8 @@ export const useTasks = () => {
   const [taskList, setTaskList] = useState(Array<any>);
   const { id } = useParams();
 
-  useEffect(() => {
-    if (id != undefined)
+  const updateTasks = () => {
+    if (id != undefined) {
       axios
         .get(`http://localhost:8080/project/${id}`, {
           headers: {
@@ -18,6 +18,13 @@ export const useTasks = () => {
         .then((response) => {
           setTaskList(response.data.tasks);
         });
+    } else {
+      console.log("Id param undefined");
+    }
+  };
+
+  useEffect(() => {
+    updateTasks();
   }, [id]);
-  return { taskList };
+  return { taskList, updateTasks };
 };

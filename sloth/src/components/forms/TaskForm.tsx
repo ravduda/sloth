@@ -14,12 +14,13 @@ import { Form } from "@/components/ui/form";
 import NameField from "./formComponents/NameField";
 import DescriptionField from "./formComponents/DescriptionField";
 import DeadlineField from "./formComponents/DeadlineField";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectIdField from "./formComponents/ProjectIdField";
 import axios from "axios";
 import { getJWT } from "../JWTManager";
 import MemberField from "./formComponents/MemberField";
 import { useParams } from "react-router-dom";
+import { UpdateTasksContext } from "../Tasks";
 
 const TaskForm = () => {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,7 @@ const TaskForm = () => {
       memberId: 2,
     },
   });
+  const updateTasks = useContext(UpdateTasksContext);
   useEffect(() => {
     form.setValue("projectId", projectId);
   }, [projectId]);
@@ -54,6 +56,7 @@ const TaskForm = () => {
       })
       .then(() => {
         setOpen(false);
+        updateTasks.updateTasks();
       });
   }
   return (
