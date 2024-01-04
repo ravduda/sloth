@@ -11,7 +11,7 @@ const Project = (project: IProject) => {
   return (
     <Link
       to={`/dashboard/project/${project.id}`}
-      className={cn(buttonVariants({ variant: "ghost" }), "ml-3")}
+      className={cn(buttonVariants({ variant: "ghost" }), "w-full my-1 ")}
     >
       {project.name}
     </Link>

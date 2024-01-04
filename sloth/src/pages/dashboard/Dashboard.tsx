@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import logo from "@/assets/slothLogoOLarge.png";
 import { Link, Outlet } from "react-router-dom";
+import SideMenu from "@/components/SideMenu";
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,8 @@ const Dashboard = () => {
         <Link to={"/"}>
           <img src={logo} alt="logo" className="h-10" />
         </Link>
+        <SideMenu />
+        <h2 className="text-2xl">Teams:</h2>
         <Teams />
       </ScrollArea>
       <Card className="flex-1 p-3 my-3 mr-3 border-primary">

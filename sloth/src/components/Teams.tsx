@@ -10,12 +10,7 @@ const Teams = () => {
       {teamsList &&
         teamsList.map((i, key) => {
           return (
-            <Accordion
-              type="single"
-              key={key}
-              collapsible
-              className="w-full p-4"
-            >
+            <Accordion type="single" key={key} collapsible className="w-full">
               <Team key={key} {...i.team} />
             </Accordion>
           );
