@@ -44,11 +44,10 @@ export function DataTable<TData, TValue>({
       columnVisibility,
     },
   });
-
   return (
     <>
       <h1 className="text-3xl font-bold inline align-top	m-2">Table title</h1>
-      <TaskForm projectId={2} />
+      <TaskForm />
       <p className="m-2">
         Description aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa
         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

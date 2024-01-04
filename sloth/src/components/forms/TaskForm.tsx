@@ -16,25 +16,42 @@ import DescriptionField from "./formComponents/DescriptionField";
 import DeadlineField from "./formComponents/DeadlineField";
 import { useState } from "react";
 import ProjectIdField from "./formComponents/ProjectIdField";
+import axios from "axios";
+import { getJWT } from "../JWTManager";
+import MemberField from "./formComponents/MemberField";
+import { useParams } from "react-router-dom";
 
-const TaskForm = ({ projectId }: any) => {
+const TaskForm = () => {
   const [open, setOpen] = useState(false);
+  const { id } = useParams();
+  const projectId = id == undefined ? 0 : parseInt(id);
   const formSchema = z.object({
     name: z.string().min(2).max(50),
-    description: z.string(),
+    description: z.string().max(250),
     deadline: z.date(),
     projectId: z.number(),
+    memberId: z.number(),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "abc",
+      name: "",
       description: "",
       projectId: projectId,
+      memberId: 2,
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    axios
+      .put(`http://localhost:8080/task`, values, {
+        headers: {
+          Authorization: "Bearer " + getJWT(),
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+      .then(() => {
+        setOpen(false);
+      });
   }
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -71,6 +88,7 @@ const TaskForm = ({ projectId }: any) => {
               <DescriptionField form={form} />
               <DeadlineField form={form} />
               <ProjectIdField form={form} />
+              <MemberField form={form} />
               <Button type="submit">Save</Button>
             </form>
           </Form>
