@@ -14,7 +14,7 @@ import { Form } from "@/components/ui/form";
 import NameField from "./formComponents/NameField";
 import DescriptionField from "./formComponents/DescriptionField";
 import DeadlineField from "./formComponents/DeadlineField";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectIdField from "./formComponents/ProjectIdField";
 import axios from "axios";
 import { getJWT } from "../JWTManager";
@@ -41,6 +41,9 @@ const TaskForm = () => {
       memberId: 2,
     },
   });
+  useEffect(() => {
+    form.setValue("projectId", projectId);
+  }, [projectId]);
   function onSubmit(values: z.infer<typeof formSchema>) {
     axios
       .put(`http://localhost:8080/task`, values, {
