@@ -12,6 +12,8 @@ import pl.ravduda.slothapi.model.enumObj.MemberRole;
 import pl.ravduda.slothapi.repository.MemberRepository;
 import pl.ravduda.slothapi.repository.TeamRepository;
 import pl.ravduda.slothapi.repository.UserRepository;
+import pl.ravduda.slothapi.responseObj.MemberWithUserInfo;
+import pl.ravduda.slothapi.responseObj.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +64,25 @@ public class TeamService {
                 .name(team.getName())
                 .projects(projectList)
                 .build();
+    }
+
+    public List<MemberWithUserInfo> getTeamMembers(int id) {
+        List<Member> memberList= memberRepository.findByTeamId(id);
+        List<MemberWithUserInfo> memberListWithoutTeamData = new ArrayList<MemberWithUserInfo>();
+        for(Member i : memberList){
+            memberListWithoutTeamData.add(MemberWithUserInfo.builder()
+                    .id(i.getId())
+                    .user(UserInfo.builder()
+                            .id(i.getUser().getId())
+                            .firstname(i.getUser().getFirstname())
+                            .lastname(i.getUser().getLastname())
+                            .email(i.getUser().getEmail())
+                            .build()
+                    )
+                    .role(i.getRole())
+                    .build()
+            );
+        }
+        return memberListWithoutTeamData;
     }
 }

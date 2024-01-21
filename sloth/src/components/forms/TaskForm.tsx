@@ -39,7 +39,7 @@ const TaskForm = () => {
       name: "",
       description: "",
       projectId: projectId,
-      memberId: 2,
+      memberId: 0,
     },
   });
   const updateTasks = useContext(UpdateTasksContext);

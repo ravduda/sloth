@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ravduda.slothapi.model.Member;
 import pl.ravduda.slothapi.model.Team;
+import pl.ravduda.slothapi.responseObj.MemberWithUserInfo;
 import pl.ravduda.slothapi.service.TeamService;
 
 import java.util.List;
@@ -23,4 +24,7 @@ public class TeamController {
     public ResponseEntity<List<Member>> getTeams(){
         return ResponseEntity.ok(teamService.getUserTeams());
     }
+
+    @GetMapping("/members/{id}")
+    public ResponseEntity<List<MemberWithUserInfo>> getMembers(@PathVariable int id) {return ResponseEntity.ok(teamService.getTeamMembers(id));}
 }
