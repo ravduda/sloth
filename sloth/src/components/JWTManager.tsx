@@ -14,4 +14,8 @@ const getJWT = () => {
   const cookie = new Cookies();
   return cookie.get("jwt_authorization");
 };
-export { setJWT, getJWT };
+const getJWTDecoded = () => {
+  const cookie = getJWT();
+  return jwtDecode(cookie);
+};
+export { setJWT, getJWT, getJWTDecoded };

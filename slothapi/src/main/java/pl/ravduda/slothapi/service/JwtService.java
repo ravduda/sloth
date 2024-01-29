@@ -8,6 +8,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import pl.ravduda.slothapi.model.User;
 
 import java.security.Key;
 import java.util.Date;
@@ -36,8 +37,11 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(User userDetails){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("firstname", userDetails.getFirstname());
+        hashMap.put("lastname", userDetails.getLastname());
+        return generateToken(hashMap, userDetails);
     }
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);

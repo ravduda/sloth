@@ -1,16 +1,22 @@
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Button, buttonVariants } from "./ui/button";
+import { getJWTDecoded } from "./JWTManager";
 
 const SideMenu = () => {
+  const jwtData: any = getJWTDecoded();
+  console.log(jwtData);
   return (
     <div className="mt-10 gap-3 flex flex-col">
       <div>
         <div className="grid bg-secondary w-48 h-48 rounded-full m-auto text-8xl text-center content-center">
-          <div>RD</div>
+          <div>{`${jwtData.firstname.substring(
+            0,
+            1
+          )}${jwtData.lastname.substring(0, 1)}`}</div>
         </div>
-        <div className="text-center text-2xl text-primary">Rafał Duda</div>
-        <div className="text-center text-sm">ravduda@gmail.com</div>
+        <div className="text-center text-2xl text-primary">{`${jwtData.firstname} ${jwtData.lastname}`}</div>
+        <div className="text-center text-sm">{jwtData.sub}</div>
         <div className="grid grid-flow-col place-content-center m-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
