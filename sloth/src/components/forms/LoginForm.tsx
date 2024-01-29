@@ -7,8 +7,10 @@ import EmailField from "./formComponents/EmailField";
 import PasswordField from "./formComponents/PasswordField";
 import { Button } from "../ui/button";
 import { setJWT } from "../JWTManager";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const nav = useNavigate();
   const formSchema = zod.object({
     email: zod.string(),
     password: zod.string(),
@@ -27,6 +29,7 @@ const LoginForm = () => {
       .then((response) => {
         if (response != null && response.data.token != null) {
           setJWT(response.data.token);
+          nav("/dashboard");
         }
       });
   }

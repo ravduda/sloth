@@ -10,8 +10,10 @@ import { Button } from "../ui/button";
 import FirstNameField from "./formComponents/FirstNameField";
 import axios from "axios";
 import { setJWT } from "../JWTManager";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
+  const nav = useNavigate();
   const formSchema = zod.object({
     firstName: zod.string(),
     lastName: zod.string(),
@@ -34,6 +36,7 @@ const RegisterForm = () => {
       .then((response) => {
         if (response != null && response.data.token != null) {
           setJWT(response.data.token);
+          nav("/dashboard");
         }
       });
   }
