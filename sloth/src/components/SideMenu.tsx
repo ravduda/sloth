@@ -14,7 +14,7 @@ const SideMenu = () => {
   return (
     <div className="mt-10 gap-3 flex flex-col">
       <div className="text-center">
-        <div className="grid bg-secondary w-48 h-48 rounded-full m-auto text-8xl text-center content-center">
+        <div className="grid bg-secondary w-48 h-48 rounded-full m-auto text-8xl text-center content-center select-none">
           <div>{`${jwtData.firstname.substring(
             0,
             1
@@ -45,7 +45,7 @@ const SideMenu = () => {
         </Button>
       </div>
 
-      <Link to={"/dashboard/home"} className={cn(buttonVariants({}), "w-full")}>
+      <Link to={"/dashboard"} className={cn(buttonVariants({}), "w-full my-2")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -62,7 +62,7 @@ const SideMenu = () => {
         </svg>
         Home
       </Link>
-      <Button variant="outline" className="w-full">
+      {/* <Button variant="outline" className="w-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -78,7 +78,7 @@ const SideMenu = () => {
           />
         </svg>
         Teams details
-      </Button>
+      </Button> */}
     </div>
   );
 };
