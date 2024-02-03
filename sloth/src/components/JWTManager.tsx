@@ -16,7 +16,8 @@ const getJWT = () => {
 };
 const getJWTDecoded = () => {
   const cookie = getJWT();
-  return jwtDecode(cookie);
+  if (cookie != undefined) return jwtDecode(cookie);
+  return 0;
 };
 const deleteJWT = (): void => {
   const cookie = new Cookies();
