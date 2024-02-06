@@ -21,7 +21,6 @@ import {
 import { useTeamMembers } from "@/hooks/useTeamMembers";
 import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { useEffect } from "react";
 
 const MemberField = ({ form }: any) => {
   const { teamMembers } = useTeamMembers();

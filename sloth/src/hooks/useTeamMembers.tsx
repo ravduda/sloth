@@ -20,6 +20,6 @@ export const useTeamMembers = () => {
     } else {
       console.log("Id param undefined");
     }
-  });
+  }, []);
   return { teamMembers };
 };
