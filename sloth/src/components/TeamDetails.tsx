@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Card } from "./ui/card";
 import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
+import ProjectForm from "./forms/ProjectForm";
 
 interface ITeam {
   id: number;
@@ -19,7 +20,7 @@ const TeamDetails = (membership: IMember) => {
     <Card className="p-5 border-primary h-80">
       <h2 className="text-3xl">{membership.team.name}</h2>
       <p>Your role in team: {membership.role}</p>
-      <ScrollArea>
+      <ScrollArea className="h-52">
         {membership.team.projects &&
           membership.team.projects.map((project, key) => {
             return (
@@ -36,12 +37,7 @@ const TeamDetails = (membership: IMember) => {
             );
           })}
         {membership.role === "OWNER" && (
-          <Button
-            variant="outline"
-            className="w-full my-2 border-dashed border-primary"
-          >
-            New project
-          </Button>
+          <ProjectForm teamId={membership.team.id} />
         )}
       </ScrollArea>
     </Card>
