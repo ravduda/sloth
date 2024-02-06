@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export const useTeams = () => {
   const [teamsList, setTeamsList] = useState(Array<any>);
 
-  useEffect(() => {
+  const updateTeamsList = () => {
     axios
       .get("http://localhost:8080/team", {
         headers: {
@@ -15,6 +15,10 @@ export const useTeams = () => {
       .then((response) => {
         setTeamsList(response.data);
       });
+  };
+
+  useEffect(() => {
+    updateTeamsList();
   }, []);
-  return { teamsList };
+  return { teamsList, updateTeamsList };
 };

@@ -13,13 +13,18 @@ import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import NameField from "./formComponents/NameField";
 import DescriptionField from "./formComponents/DescriptionField";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProjectIdField from "./formComponents/ProjectIdField";
 import axios from "axios";
 import { getJWT } from "../JWTManager";
-import { UpdateTasksContext } from "../Tasks";
 
-const ProjectForm = ({ teamId }: { teamId: number }) => {
+const ProjectForm = ({
+  teamId,
+  updateTeams,
+}: {
+  teamId: number;
+  updateTeams: () => void;
+}) => {
   const [open, setOpen] = useState(false);
   const formSchema = z.object({
     name: z.string().min(2).max(50),
@@ -34,7 +39,6 @@ const ProjectForm = ({ teamId }: { teamId: number }) => {
       teamId: teamId,
     },
   });
-  const updateTasks = useContext(UpdateTasksContext);
   useEffect(() => {
     form.setValue("teamId", teamId);
   }, [teamId]);
@@ -48,7 +52,7 @@ const ProjectForm = ({ teamId }: { teamId: number }) => {
       })
       .then(() => {
         setOpen(false);
-        updateTasks.updateTasks();
+        updateTeams();
       });
   }
   return (

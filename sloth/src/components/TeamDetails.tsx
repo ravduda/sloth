@@ -15,7 +15,13 @@ interface IMember {
   role: string;
   team: ITeam;
 }
-const TeamDetails = (membership: IMember) => {
+const TeamDetails = ({
+  updateTeamsList,
+  membership,
+}: {
+  updateTeamsList: () => void;
+  membership: IMember;
+}) => {
   return (
     <Card className="p-5 border-primary h-80">
       <h2 className="text-3xl">{membership.team.name}</h2>
@@ -37,7 +43,10 @@ const TeamDetails = (membership: IMember) => {
             );
           })}
         {membership.role === "OWNER" && (
-          <ProjectForm teamId={membership.team.id} />
+          <ProjectForm
+            teamId={membership.team.id}
+            updateTeams={updateTeamsList}
+          />
         )}
       </ScrollArea>
     </Card>
