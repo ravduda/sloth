@@ -46,15 +46,6 @@ export function DataTable<TData, TValue>({
   });
   return (
     <>
-      <h1 className="text-3xl font-bold inline align-top	m-2">Table title</h1>
-      <TaskForm />
-      <p className="m-2">
-        Description aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        aaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        aaaaaaaaaaaaaaaaaaaaaaaa
-      </p>
       <div className="flex items-center py-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
