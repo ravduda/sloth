@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, buttonVariants } from "./ui/button";
 import { deleteJWT, getJWTDecoded } from "./JWTManager";
 
-const SideMenu = () => {
+const SideMenu = ({ ...params }) => {
   const jwtData: any = getJWTDecoded();
   const nav = useNavigate();
   const logout = () => {
@@ -12,7 +12,7 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="mt-10 gap-3 flex flex-col">
+    <div className="mt-10 gap-3 flex flex-col" {...params}>
       <div className="text-center">
         <div className="grid bg-secondary w-48 h-48 rounded-full m-auto text-8xl text-center content-center select-none">
           <div>{`${jwtData.firstname.substring(
