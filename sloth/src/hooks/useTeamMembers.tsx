@@ -9,7 +9,7 @@ export const useTeamMembers = () => {
   useEffect(() => {
     if (id != undefined) {
       axios
-        .get(`http://localhost:8080/team/members/${id}`, {
+        .get(`http://localhost:8080/project/members/${id}`, {
           headers: {
             Authorization: "Bearer " + getJWT(),
           },

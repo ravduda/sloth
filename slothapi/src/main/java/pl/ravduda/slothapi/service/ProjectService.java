@@ -6,6 +6,7 @@ import pl.ravduda.slothapi.model.Member;
 import pl.ravduda.slothapi.model.Project;
 import pl.ravduda.slothapi.model.Task;
 import pl.ravduda.slothapi.repository.ProjectRepository;
+import pl.ravduda.slothapi.responseObj.MemberWithUserInfo;
 import pl.ravduda.slothapi.responseObj.ProjectWithTasksWithOwnerInfo;
 import pl.ravduda.slothapi.responseObj.TaskWithOwnerInfo;
 import pl.ravduda.slothapi.responseObj.UserInfo;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectService {
     private final ProjectRepository projectRepository;
+    private final TeamService teamService;
     public Project addProject(Project project) {
         return projectRepository.save(project);
     }
@@ -50,5 +52,10 @@ public class ProjectService {
                     .build());
         }
         return tempTasks;
+    }
+
+    public List<MemberWithUserInfo> getProjectMembers(int projectId) {
+        int teamId = projectRepository.findById(projectId).orElseThrow().getTeamId();
+        return teamService.getTeamMembers(teamId);
     }
 }
