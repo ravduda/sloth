@@ -14,7 +14,6 @@ import { Form } from "@/components/ui/form";
 import NameField from "./formComponents/NameField";
 import DescriptionField from "./formComponents/DescriptionField";
 import { useEffect, useState } from "react";
-import ProjectIdField from "./formComponents/ProjectIdField";
 import axios from "axios";
 import { getJWT } from "../JWTManager";
 
@@ -91,7 +90,6 @@ const ProjectForm = ({
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <NameField form={form} />
               <DescriptionField form={form} />
-              <ProjectIdField form={form} />
               <Button type="submit">Save</Button>
             </form>
           </Form>
