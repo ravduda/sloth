@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import React from "react";
 import { Button } from "../ui/button";
-import TaskForm from "../forms/TaskForm";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -116,7 +115,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="max-w-xl">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

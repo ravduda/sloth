@@ -23,6 +23,10 @@ export const columns: ColumnDef<Task>[] = [
     header: "Name",
   },
   {
+    accessorKey: "description",
+    header: "Description",
+  },
+  {
     accessorKey: "owner",
     header: "Owner",
     cell: ({ row }) => {
