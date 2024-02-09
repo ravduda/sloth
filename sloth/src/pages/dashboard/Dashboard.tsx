@@ -7,6 +7,7 @@ import SideMenu from "@/components/SideMenu";
 import { useEffect, useState } from "react";
 import { getJWT } from "@/components/JWTManager";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const Dashboard = () => {
   const nav = useNavigate();
@@ -32,7 +33,7 @@ const Dashboard = () => {
     return (
       <div className="md:h-screen flex flex-col md:flex-row">
         <ScrollArea className="flex h-full items-center justify-center p-3">
-          <div className="flex justify-between w-auto">
+          <div className="flex justify-between">
             <Link to={"/"}>
               <img src={logo} alt="logo" className="h-10" />
             </Link>
@@ -54,7 +55,7 @@ const Dashboard = () => {
             </Button>
           </div>
 
-          <div className={getMenuStyleClasses()}>
+          <div className={cn(getMenuStyleClasses(), "md:w-72")}>
             <SideMenu />
             <h2 className="text-2xl">Teams:</h2>
             <Teams />
