@@ -24,7 +24,7 @@ public class Task {
     private LocalDate deadline;
     private int projectId;
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner", updatable = false)
     private Member member;
     @Enumerated(EnumType.STRING)
     private Status status;

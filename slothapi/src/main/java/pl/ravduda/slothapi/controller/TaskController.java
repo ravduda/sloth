@@ -32,4 +32,8 @@ public class TaskController {
             return taskService.addTask(task);
         return null;
     }
+    @GetMapping("/{id}")
+    public Task changeStatusToDone(@PathVariable int id){
+        return taskService.changeStatusToDone(id);
+    }
 }

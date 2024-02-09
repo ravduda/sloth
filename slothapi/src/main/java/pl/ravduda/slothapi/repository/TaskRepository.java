@@ -8,11 +8,13 @@ import pl.ravduda.slothapi.model.Task;
 import pl.ravduda.slothapi.model.enumObj.Status;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
 
+    Optional<Task> findById(int id);
     List<Task> findByProjectIdAndStatus(int projectId, Status status, Pageable pageable);
     List<Task> findByProjectIdAndStatus(int projectId, Status status);
     List<Task> findByProjectId(int projectId, Pageable pageable);

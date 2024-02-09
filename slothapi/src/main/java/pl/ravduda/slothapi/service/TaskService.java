@@ -38,4 +38,17 @@ public class TaskService {
         return projectService.getUserMemberRole(userId, taskRepository.findById(taskId).orElseThrow().getProjectId());
     }
 
+    public Task changeStatusToDone(int id){
+        Task task = taskRepository.findById(id).orElseThrow();
+        Task savedTask = Task.builder()
+                .id(task.getId())
+                .name(task.getName())
+                .description(task.getDescription())
+                .deadline(task.getDeadline())
+                .projectId(task.getProjectId())
+                .status(Status.DONE)
+                        .build();
+        return taskRepository.save(savedTask);
+    }
+
 }
