@@ -18,12 +18,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useTeamMembers } from "@/hooks/useTeamMembers";
+import { useProjectMember } from "@/hooks/useProjectMembers";
 import { cn } from "@/lib/utils";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 const MemberField = ({ form }: any) => {
-  const { teamMembers } = useTeamMembers();
+  const { teamMembers } = useProjectMember();
   return (
     <FormField
       control={form.control}

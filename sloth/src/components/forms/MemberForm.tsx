@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -16,8 +15,12 @@ import axios from "axios";
 import { getJWT } from "../JWTManager";
 import RoleField from "./formComponents/RoleField";
 import UsernameField from "./formComponents/UsernameField";
+import { useTeamMembers } from "@/hooks/useTeamMembers";
+import { ScrollArea } from "../ui/scroll-area";
 
 const MemberForm = ({ teamId }: { teamId: number }) => {
+  const { teamMembers, updateTeamMembers } = useTeamMembers({ teamId });
+  console.log(teamMembers);
   const [open, setOpen] = useState(false);
   const formSchema = z.object({
     teamId: z.number(),
@@ -40,6 +43,7 @@ const MemberForm = ({ teamId }: { teamId: number }) => {
         },
       })
       .then(() => {
+        updateTeamMembers();
         // setOpen(false);
       });
   }
@@ -65,20 +69,34 @@ const MemberForm = ({ teamId }: { teamId: number }) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle>Add member</DialogTitle>
-          <DialogDescription>
-            Fill member email and role. Click save when you're done.
-          </DialogDescription>
+          <DialogTitle>Members</DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <UsernameField form={form} />
-              <RoleField form={form} />
-              <Button type="submit">Save</Button>
-            </form>
-          </Form>
-        </div>
+        <ScrollArea className="block max-h-[50rem]">
+          <div className="grid gap-4 py-4">
+            {teamMembers.length > 0 &&
+              teamMembers.map((i, key) => {
+                return (
+                  <div key={key} className="border rounded p-2">
+                    <p>
+                      {i.user.firstname} {i.user.lastname}
+                    </p>
+                    <p className="text-xs">{i.user.email}</p>
+                  </div>
+                );
+              })}
+            <h2 className="text-2xl">Add member:</h2>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
+                <UsernameField form={form} />
+                <RoleField form={form} />
+                <Button type="submit">Save</Button>
+              </form>
+            </Form>
+          </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

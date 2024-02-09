@@ -1,13 +1,15 @@
 import { getJWT } from "@/components/JWTManager";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const useTeamMembers = ({ teamId }: { teamId: number }) => {
+export const useProjectMember = () => {
   const [teamMembers, setTeamMembers] = useState(Array<any>);
-  const updateTeamMembers = () => {
-    if (teamId != undefined) {
+  const { id } = useParams();
+  useEffect(() => {
+    if (id != undefined) {
       axios
-        .get(`http://localhost:8080/team/members/${teamId}`, {
+        .get(`http://localhost:8080/project/members/${id}`, {
           headers: {
             Authorization: "Bearer " + getJWT(),
           },
@@ -18,9 +20,6 @@ export const useTeamMembers = ({ teamId }: { teamId: number }) => {
     } else {
       console.log("Id param undefined");
     }
-  };
-  useEffect(() => {
-    updateTeamMembers();
   }, []);
-  return { teamMembers, updateTeamMembers };
+  return { teamMembers };
 };

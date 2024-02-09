@@ -14,7 +14,7 @@ const UsernameField = (form: any) => {
       name="username"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>username</FormLabel>
+          <FormLabel>Username</FormLabel>
           <FormControl>
             <Input {...field} />
           </FormControl>
