@@ -4,6 +4,7 @@ import { ScrollArea } from "./ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "./ui/button";
 import ProjectForm from "./forms/ProjectForm";
+import MemberForm from "./forms/MemberForm";
 
 interface ITeam {
   id: number;
@@ -29,7 +30,9 @@ const TeamDetails = ({
           <h2 className="text-3xl">{membership.team.name}</h2>
           <p>Your role in team: {membership.role}</p>
         </div>
-        <div></div>
+        <div>
+          <MemberForm teamId={membership.team.id} />
+        </div>
       </div>
       <ScrollArea className="h-52">
         {membership.team.projects &&
