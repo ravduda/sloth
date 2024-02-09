@@ -33,14 +33,4 @@ public class TaskService {
         );
     }
 
-    public List<Task> getTasks(Integer projectId) {
-        List<Task> databaseTaskList = taskRepository.findByProjectId(projectId);
-        List<Task> taskList = new ArrayList<Task>();
-        for(Task i : databaseTaskList){
-            taskList.add(Task.builder()
-                            .id(i.getId())
-                    .build());
-        }
-        return taskList;
-    }
 }

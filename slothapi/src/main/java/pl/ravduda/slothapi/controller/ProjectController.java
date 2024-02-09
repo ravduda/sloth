@@ -23,8 +23,8 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public ProjectWithTasksWithOwnerInfo getProjectWithTasks(@PathVariable int id){
-        return projectService.getProject(id);
+    public ProjectWithTasksWithOwnerInfo getProjectWithTasks(@PathVariable int id, @RequestParam boolean onlyToDo, @RequestParam int page, @RequestParam int onPage){
+        return projectService.getProject(id, onlyToDo, page, onPage);
     }
     @GetMapping("/members/{id}")
     public ResponseEntity<List<MemberWithUserInfo>> getMembers(@PathVariable int id) {return ResponseEntity.ok(projectService.getProjectMembers(id));}

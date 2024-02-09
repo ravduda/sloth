@@ -9,6 +9,7 @@ interface IProject {
   description: string;
   tasks: Array<any>;
   teamId: number;
+  total: number;
 }
 interface ITask {
   id: number;
@@ -25,7 +26,13 @@ interface Owner {
   email: string;
 }
 
-export const useTasks = () => {
+export const useTasks = ({
+  page,
+  onlyToDo,
+}: {
+  page: number;
+  onlyToDo: boolean;
+}) => {
   const [taskList, setTaskList] = useState(Array<any>);
   const [project, setProject] = useState({} as IProject);
   const { id } = useParams();
@@ -34,6 +41,11 @@ export const useTasks = () => {
     if (id != undefined) {
       axios
         .get(`http://localhost:8080/project/${id}`, {
+          params: {
+            onlyToDo: onlyToDo,
+            page: page - 1,
+            onPage: 10,
+          },
           headers: {
             Authorization: "Bearer " + getJWT(),
           },
@@ -50,6 +62,6 @@ export const useTasks = () => {
 
   useEffect(() => {
     updateTasks();
-  }, [id]);
+  }, [id, page, onlyToDo]);
   return { taskList, updateTasks, project };
 };

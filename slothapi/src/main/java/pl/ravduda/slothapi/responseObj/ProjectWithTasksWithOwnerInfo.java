@@ -21,4 +21,5 @@ public class ProjectWithTasksWithOwnerInfo {
     private String description;
     private int teamId;
     private List<TaskWithOwnerInfo> tasks;
+    private int total;
 }

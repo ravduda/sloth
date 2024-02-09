@@ -19,8 +19,4 @@ public class TaskController {
     public Task addTask(@RequestBody TaskRequest task){
         return taskService.addTask(task);
     }
-    @GetMapping("")
-    public ResponseEntity<List<Task>> getTasks(@RequestParam Integer projectId){
-        return ResponseEntity.ok(taskService.getTasks(projectId));
-    }
 }
