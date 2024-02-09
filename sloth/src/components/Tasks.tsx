@@ -5,11 +5,12 @@ import { createContext } from "react";
 import TaskForm from "./forms/TaskForm";
 import { useTaskParams } from "@/hooks/useTasksParams";
 import Paging from "./Paging";
+import { Switch } from "./ui/switch";
 
 export const UpdateTasksContext = createContext({ updateTasks: () => {} });
 
 const Tasks = () => {
-  const { page, setPage, onlyToDo, setOnlyToDo } = useTaskParams();
+  const { page, setPage, onlyToDo, switchOnlyToDo } = useTaskParams();
 
   const { taskList, updateTasks, project } = useTasks({ page, onlyToDo });
   return (
@@ -19,6 +20,12 @@ const Tasks = () => {
       <p className="m-2">{project.description}</p>
       {taskList && (
         <div>
+          Show only TODO
+          <Switch
+            className="ml-2"
+            checked={onlyToDo}
+            onCheckedChange={switchOnlyToDo}
+          />
           <DataTable columns={columns} data={taskList} />
         </div>
       )}

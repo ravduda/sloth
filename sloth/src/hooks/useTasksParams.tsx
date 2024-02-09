@@ -11,11 +11,14 @@ export const useTaskParams = () => {
       ? (searchParams.get("onlyToDo") as unknown as boolean)
       : false
   );
+  const switchOnlyToDo = () => {
+    setOnlyToDo(!onlyToDo);
+  };
   useEffect(() => {
     let params: any = {};
     params.page = page;
     params.onlyToDo = onlyToDo;
     setSearchParams(params);
   }, [page, onlyToDo]);
-  return { page, setPage, onlyToDo, setOnlyToDo };
+  return { page, setPage, onlyToDo, switchOnlyToDo };
 };
