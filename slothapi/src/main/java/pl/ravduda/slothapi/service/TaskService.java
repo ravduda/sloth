@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.ravduda.slothapi.model.Member;
 import pl.ravduda.slothapi.model.Task;
+import pl.ravduda.slothapi.model.enumObj.MemberRole;
 import pl.ravduda.slothapi.model.enumObj.Status;
 import pl.ravduda.slothapi.repository.MemberRepository;
 import pl.ravduda.slothapi.repository.TaskRepository;
@@ -18,6 +19,7 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
     private final MemberService memberService;
+    private final ProjectService projectService;
     public Task addTask(TaskRequest task){
         Member tempMember = Member.builder()
                 .id(task.getMemberId())
@@ -31,6 +33,9 @@ public class TaskService {
                         .status(Status.TODO)
                         .build()
         );
+    }
+    public MemberRole getUserMemberRole(int userId, int taskId){
+        return projectService.getUserMemberRole(userId, taskRepository.findById(taskId).orElseThrow().getProjectId());
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.ravduda.slothapi.model.Member;
 import pl.ravduda.slothapi.model.Project;
 import pl.ravduda.slothapi.model.Task;
+import pl.ravduda.slothapi.model.enumObj.MemberRole;
 import pl.ravduda.slothapi.model.enumObj.Status;
 import pl.ravduda.slothapi.repository.ProjectRepository;
 import pl.ravduda.slothapi.repository.TaskRepository;
@@ -74,5 +75,8 @@ public class ProjectService {
     public List<MemberWithUserInfo> getProjectMembers(int projectId) {
         int teamId = projectRepository.findById(projectId).orElseThrow().getTeamId();
         return teamService.getTeamMembers(teamId);
+    }
+    public MemberRole getUserMemberRole(int userId, int projectId){
+        return teamService.getUserMemberRole(userId, projectRepository.findById(projectId).orElseThrow().getTeamId());
     }
 }

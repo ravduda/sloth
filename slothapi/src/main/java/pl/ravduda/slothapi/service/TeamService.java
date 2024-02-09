@@ -24,6 +24,7 @@ public class TeamService {
     private final TeamRepository teamRepository;
     private final UserRepository userRepository;
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
     public Team addTeam(Team team) {
         Team createdTeam = teamRepository.save(team);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -84,5 +85,8 @@ public class TeamService {
             );
         }
         return memberListWithoutTeamData;
+    }
+    public MemberRole getUserMemberRole(int userId, int teamId){
+        return memberRepository.findByUserIdAndTeamId(userId, teamId).orElseThrow().getRole();
     }
 }

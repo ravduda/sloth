@@ -41,9 +41,10 @@ export const columns: ColumnDef<Task>[] = [
     accessorKey: "deadline",
     header: "Deadline",
     cell: ({ row }) => {
-      const date: Array<number> = row.getValue("deadline");
-      const formatted = `${date[0]}-${date[1]}-${date[2]}`;
-      return <div>{formatted}</div>;
+      const data: Array<number> = row.getValue("deadline");
+      // const formatted = `${date[0]}-${date[1]}-${date[2]}`;
+      const date: Date = new Date(data[0], data[1], data[2]);
+      return <div>{date.toDateString()}</div>;
     },
   },
   {
