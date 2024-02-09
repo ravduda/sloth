@@ -22,7 +22,7 @@ public class MemberController {
     private final MemberService memberService;
     private final UserRepository userRepository;
     private final TeamService teamService;
-    @PutMapping("")
+    @PostMapping("")
     public ResponseEntity<String> addProject(@RequestBody MemberRequest member){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

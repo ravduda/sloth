@@ -29,7 +29,7 @@ const TeamForm = ({ updateTeams }: { updateTeams: () => void }) => {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     axios
-      .put(`http://localhost:8080/team`, values, {
+      .post(`http://localhost:8080/team`, values, {
         headers: {
           Authorization: "Bearer " + getJWT(),
           "Access-Control-Allow-Origin": "*",

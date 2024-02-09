@@ -22,7 +22,7 @@ public class TaskController {
     private final ProjectService projectService;
     private final UserRepository userRepository;
 
-    @PutMapping("")
+    @PostMapping("")
     public Task addTask(@RequestBody TaskRequest task){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

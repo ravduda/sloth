@@ -24,7 +24,7 @@ public class ProjectController {
     private final UserRepository userRepository;
     private final TeamService teamService;
 
-    @PutMapping("")
+    @PostMapping("")
     public Project addProject(@RequestBody Project project){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

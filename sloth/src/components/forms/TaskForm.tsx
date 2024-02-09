@@ -46,7 +46,7 @@ const TaskForm = ({ updateTasks }: { updateTasks: () => void }) => {
   }, [projectId]);
   function onSubmit(values: z.infer<typeof formSchema>) {
     axios
-      .put(`http://localhost:8080/task`, values, {
+      .post(`http://localhost:8080/task`, values, {
         headers: {
           Authorization: "Bearer " + getJWT(),
           "Access-Control-Allow-Origin": "*",

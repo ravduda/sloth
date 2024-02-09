@@ -43,7 +43,7 @@ const ProjectForm = ({
   }, [teamId]);
   function onSubmit(values: z.infer<typeof formSchema>) {
     axios
-      .put(`http://localhost:8080/project`, values, {
+      .post(`http://localhost:8080/project`, values, {
         headers: {
           Authorization: "Bearer " + getJWT(),
           "Access-Control-Allow-Origin": "*",

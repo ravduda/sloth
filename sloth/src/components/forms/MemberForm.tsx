@@ -36,7 +36,7 @@ const MemberForm = ({ teamId }: { teamId: number }) => {
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
     axios
-      .put(`http://localhost:8080/member`, values, {
+      .post(`http://localhost:8080/member`, values, {
         headers: {
           Authorization: "Bearer " + getJWT(),
           "Access-Control-Allow-Origin": "*",

@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/team")
 public class TeamController {
     private final TeamService teamService;
-    @PutMapping("")
+    @PostMapping("")
     public Team addTeam(@RequestBody Team team){
         return teamService.addTeam(team);
     }
