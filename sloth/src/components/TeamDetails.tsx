@@ -24,8 +24,13 @@ const TeamDetails = ({
 }) => {
   return (
     <Card className="p-5 border-primary h-80">
-      <h2 className="text-3xl">{membership.team.name}</h2>
-      <p>Your role in team: {membership.role}</p>
+      <div className="flex">
+        <div className="flex-1">
+          <h2 className="text-3xl">{membership.team.name}</h2>
+          <p>Your role in team: {membership.role}</p>
+        </div>
+        <div></div>
+      </div>
       <ScrollArea className="h-52">
         {membership.team.projects &&
           membership.team.projects.map((project, key) => {
